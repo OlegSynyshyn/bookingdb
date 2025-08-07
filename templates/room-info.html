@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1 class="text-center">
+        {{ room.title }}
+    </h1>
+    <div class="row">
+        <div class="col"></div>
+            <img class="img-fluid" src="{{room.image.url}}" alt="">
+    </div>
+    
+    <div class="col"></div>
+        <h2>{{room.price}}</h2>
+        <p>{{room.type}}</p>
+        <p>{{room.capacity}}</p>
+        <p>{{room.description}}</p>
+    </div>
+</div>
+{% endblock content %}

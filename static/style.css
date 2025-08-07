@@ -1,0 +1,22 @@
+:root{
+    box-sizing: border-box; 
+    margin: 0;
+    background-color: red;
+}
+
+html {
+    background-color: red
+}
+
+.container {
+background-color: red;
+}
+
+
+.wrapper {
+gap: 10px;
+display: flex;
+flex-wrap: wrap;
+justify-content: center; 
+align-items: center;
+}
