@@ -25,4 +25,5 @@ urlpatterns = [
     path('', include('booking_app.urls')),
     path('admin/', admin.site.urls),
     path('room-info/<int:room_id>', room_info, name='room_info'),
+    path('', include('auth_system.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
