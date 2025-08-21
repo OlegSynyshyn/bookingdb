@@ -45,6 +45,7 @@ class Booking(models.Model):
     email = models.EmailField()
     status = models.CharField(max_length=20, choices=STATUSES, default='new')
     created_at = models.DateTimeField(auto_now_add=True)
+    
 
     def __str__(self):
         return f'Room{self.room} from {self.check_in} to {self.check_out}'

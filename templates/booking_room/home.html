@@ -1,11 +1,29 @@
 {% extends 'base.html' %}
+
+
+
 {% block content %}
-
-{% for room in rooms  %}
-
-
-{{room}}
     
-{% endfor %}
-    
-{% endblock %}
+    <div class="row">
+        <div class="col">
+            <img class="img-fluid" src="{{room.image.url}}" alt="">
+        </div>
+        <div class="col">
+            <h1>Room #{{room.title}}</h1>
+            <h2>${{room.price}}</h2>
+            <p>Type: {{room.type}}</p>
+            <p>Capacity: {{room.capacity}}</p>
+            <p>{{room.description}}</p>
+            <a href="# btn btn-primary">Book</a>
+        </div>
+    </div>
+{% endblock content %}
+
+
+
+def room_info(request, room_id):
+    room = Room.objects.get(id=room_id)
+    return render(request, 'room-info.html', context={'room':room})
+
+
+path('room/<int:room_id>',room_info, name='room_info'),

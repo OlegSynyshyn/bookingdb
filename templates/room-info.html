@@ -7,7 +7,46 @@
         <div class="col"></div>
             <img class="img-fluid" src="{{room.image.url}}" alt="">
     </div>
-    
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Забронювати
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Забронювати</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        {% csrf_token %}
+        <form class="form-floating">
+            <input type="email" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="test@example.com">
+                <label for="floatingInputValue">Електронна адреса</label>
+        </div>
+
+    <div class="form-floating">
+    <input name="chack_in" type="datetime-local" class="form-control" id="datetime-local" >
+            <label for="floatingPassword">Дата заїзду</label>
+    </div>
+    <div class="form-floating">
+    <input name="chack_out" type="datetime-local" class="form-control" id="datetime-local2" >
+            <label for="floatingPassword">Дата виїзду</label>
+    </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+        <button type="submit" class="btn btn-primary">Забронювати</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
     <div class="col"></div>
         <h2>{{room.price}}</h2>
         <p>{{room.type}}</p>
