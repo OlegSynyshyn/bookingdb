@@ -1,57 +1,71 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1 class="text-center">
-        {{ room.title }}
-    </h1>
-    <div class="row">
-        <div class="col"></div>
-            <img class="img-fluid" src="{{room.image.url}}" alt="">
-    </div>
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Забронювати
-</button>
+<div class="container mt-4">
+    <h1 class="text-center mb-4">{{ room.title }}</h1>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Забронювати</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        
-        {% csrf_token %}
-        <form class="form-floating">
-            <input type="email" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="test@example.com">
-                <label for="floatingInputValue">Електронна адреса</label>
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <img class="img-fluid rounded shadow" src="{{ room.image.url }}" alt="{{ room.title }}">
         </div>
-
-    <div class="form-floating">
-    <input name="chack_in" type="datetime-local" class="form-control" id="datetime-local" >
-            <label for="floatingPassword">Дата заїзду</label>
-    </div>
-    <div class="form-floating">
-    <input name="chack_out" type="datetime-local" class="form-control" id="datetime-local2" >
-            <label for="floatingPassword">Дата виїзду</label>
     </div>
 
+    <div class="text-center mt-3">
+       
+        <button type="button" class="btn btn-lg btn-success px-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Забронювати
+        </button>
+    </div>
 
+  
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg rounded-3">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Форма бронювання</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрити"></button>
+          </div>
+
+         
+          <form method="post" action="{% url 'room_info' room.id %}">
+
+            {% csrf_token %}
+            <div class="modal-body">
+                <div class="form-floating mb-3">
+                    <input type="email" name="email" class="form-control" id="floatingInputValue" placeholder="name@example.com" required>
+                    <label for="floatingInputValue">Електронна адреса</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input name="check_in" type="datetime-local" class="form-control" id="checkIn" required>
+                    <label for="checkIn">Дата заїзду</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input name="check_out" type="datetime-local" class="form-control" id="checkOut" required>
+                    <label for="checkOut">Дата виїзду</label>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+              <button type="submit" class="btn btn-success">Забронювати</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
-        <button type="submit" class="btn btn-primary">Забронювати</button>
-        </form>
-      </div>
     </div>
-  </div>
-</div>
-    <div class="col"></div>
-        <h2>{{room.price}}</h2>
-        <p>{{room.type}}</p>
-        <p>{{room.capacity}}</p>
-        <p>{{room.description}}</p>
+
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-primary mb-3">{{ room.price }} ₴</h4>
+                    <p><strong>Тип:</strong> {{ room.type }}</p>
+                    <p><strong>Місткість:</strong> {{ room.capacity }}</p>
+                    <p class="text-muted">{{ room.description }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock content %}

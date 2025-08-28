@@ -1,10 +1,37 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>Реєстрація</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form.as_div}}
-        <button type="submit" class="btn btn-primary">Зареєструватися</button>
-    </form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body p-4">
+                    <h2 class="card-title text-center mb-4">Реєстрація</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+
+                        {% for field in form %}
+                        <div class="mb-3 row align-items-center">
+                            <label for="{{ field.id_for_label }}" class="col-sm-4 col-form-label">{{ field.label }}</label>
+                            <div class="col-sm-8">
+                                {{ field }}
+                                {% if field.errors %}
+                                    <div class="text-danger small mt-1">{{ field.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        <button type="submit" class="btn btn-success w-100 py-2 mt-2">Зареєструватися</button>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <small>Вже маєте акаунт? <a href="{% url 'login' %}">Увійти</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

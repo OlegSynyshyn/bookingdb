@@ -20,7 +20,7 @@ def login_page(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect("homne")
+            return redirect("home")
     context = {"form": form}
     return render(request, template_name="login.html", context=context)
 

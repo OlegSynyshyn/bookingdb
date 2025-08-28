@@ -1,15 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="..." alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> МійСайт
+        <!-- Логотип -->
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+           <img src="/media/rooms_image/logo.png" alt="Logo" width="100" height="100" class="rounded-circle shadow-sm">
+
+            <span class="fw-bold ms-2 text-light">Puro Hotel</span>
         </a>
+
+        <!-- Кнопка для мобільного меню -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+        <!-- Меню -->
         <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'home' %}">Головна</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Головна</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">

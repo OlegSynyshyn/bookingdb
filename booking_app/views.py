@@ -16,7 +16,7 @@ def room_info(request, room_id ):
         new_booking = Booking(email = email,
                               check_in = check_in,
                               check_out = check_out,
-                              rooms = rooms,
+                              room = rooms,
                               user = request.user
                               )
         new_booking.save()
