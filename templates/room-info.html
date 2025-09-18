@@ -10,13 +10,11 @@
     </div>
 
     <div class="text-center mt-3">
-       
         <button type="button" class="btn btn-lg btn-success px-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Забронювати
         </button>
     </div>
 
-  
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow-lg rounded-3">
@@ -25,9 +23,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрити"></button>
           </div>
 
-         
           <form method="post" action="{% url 'room_info' room.id %}">
-
             {% csrf_token %}
             <div class="modal-body">
                 <div class="form-floating mb-3">
@@ -62,7 +58,7 @@
                     <h4 class="card-title text-primary mb-3">{{ room.price }} ₴</h4>
                     <p><strong>Тип:</strong> {{ room.type }}</p>
                     <p><strong>Місткість:</strong> {{ room.capacity }}</p>
-                    <p class="text-muted">{{ room.description }}</p>
+                    <p style="color: white;">{{ room.description }}</p>
                 </div>
             </div>
         </div>
